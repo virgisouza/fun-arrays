@@ -7,6 +7,12 @@ var dataset = require('./dataset.json');
 */
 var hundredThousandairs = null;
 
+//Get all accounts from bankBalances that are > 100000 and assign to hundredThousandairs
+hundredThousandairs = (dataset.bankBalances).filter(function(e){
+  return e.amount > 100000;
+});
+
+
 /*
   DO NOT MUTATE DATA.
 
@@ -24,7 +30,33 @@ var hundredThousandairs = null;
     }
   assign the resulting new array to `datasetWithRoundedDollar`
 */
-var datasetWithRoundedDollar = null;
+//var datasetWithRoundedDollar = null;
+
+//create new dataset = datasetWithRoundedDollar
+//reduce(), map(), or filter()
+
+ //where each object is a new object
+
+var datasetWithRoundedDollar = (dataset.bankBalances).map(function(e){
+  // console.log(e)
+  // e['rounded'] = Math.round(e.amount);
+  // return e;
+return {
+  'amount': e.amount,
+  'state': e.state,
+  'rounded': Math.round(e.amount)
+}
+});
+
+
+//'amount' and 'state' values will be transfered to new object
+
+//add new key 'rounded'
+
+//'rounded' = 'amount' rounded to nearest dollar
+
+
+
 
 /*
   DO NOT MUTATE DATA.
@@ -49,10 +81,39 @@ var datasetWithRoundedDollar = null;
     }
   assign the resulting new array to `roundedDime`
 */
+
 var datasetWithRoundedDime = null;
+
+//create new data set where each blank object is a new obj
+//reduce(), map(), or filter()
+
+
+//'amount' and 'state' values will be transferred to new obj
+
+//newObj will have an additional key named 'roundedDime'
+
+//'roundedDime' = 'amount' rounded to nearest 10th of a cent  $xx.x
+
+datasetWithRoundedDime = (dataset.bankBalances).map(function(e){
+  e.roundedDime = Math.round(e.amount*10)/10;
+  return e;
+
+// return {
+//   'amount': e.amount,
+//   'state': e.state,
+//   'roundedDime': Math.round(e.amount*10)/10
+// }
+})
+
 
 // set sumOfBankBalances to be the sum of all value held at `amount` for each bank object
 var sumOfBankBalances = null;
+
+ sumOfBankBalances = (dataset.bankBalances).reduce(function(previousValue, currentValue){
+  return Math.round((parseFloat(previousValue) + parseFloat(currentValue.amount))*100)/ 100;
+
+ }, 0)
+
 
 /*
   from each of the following states:
@@ -65,7 +126,32 @@ var sumOfBankBalances = null;
   take each `amount` and add 18.9% interest to it rounded to the nearest cent
   and then sum it all up into one value saved to `sumOfInterests`
  */
+
+//for ['WI', 'IL', 'WY', 'OH', 'GA', 'DE'] ==> add 18.9% , then round that sum to
+//nearest cent
+
+//finally, sum all values up
+
 var sumOfInterests = null;
+
+sumOfInterests = (dataset.bankBalances).filter(function(){
+    //filter()
+  var states = ['WI', 'IL', 'WY', 'OH', 'GA', 'DE'];
+  var filteredStates = states.filter(function(e){
+
+    })
+
+  //then map() add 18.9%
+
+  //then reduce() and round that sum to nearest cent
+
+
+
+})
+
+
+
+
 
 /*
   aggregate the sum of bankBalance amounts
@@ -85,6 +171,13 @@ var sumOfInterests = null;
  */
 var stateSums = null;
 
+
+
+
+
+
+
+
 /*
   from each of the following states:
     Wisconsin
@@ -103,6 +196,11 @@ var stateSums = null;
  */
 var sumOfHighInterests = null;
 
+
+
+
+
+
 /*
   set `lowerSumStates` to be an array of two letter state
   abbreviations of each state where the sum of amounts
@@ -110,11 +208,25 @@ var sumOfHighInterests = null;
  */
 var lowerSumStates = null;
 
+
+
+
+
+
+
 /*
   aggregate the sum of each state into one hash table
   `higherStateSums` should be the sum of all states with totals greater than 1,000,000
  */
 var higherStateSums = null;
+
+
+
+
+
+
+
+
 
 /*
   from each of the following states:
@@ -133,6 +245,14 @@ var higherStateSums = null;
  */
 var areStatesInHigherStateSum = null;
 
+
+
+
+
+
+
+
+
 /*
   Stretch Goal && Final Boss
 
@@ -148,6 +268,15 @@ var areStatesInHigherStateSum = null;
   otherwise set it to be `false`
  */
 var anyStatesInHigherStateSum = null;
+
+
+
+
+
+
+
+
+
 
 
 module.exports = {
